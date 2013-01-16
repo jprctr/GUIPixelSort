@@ -8,20 +8,38 @@
 	<title>GUI Pixel Sorting</title>
 	<link rel="icon" href="icos.ico" type="image/x-icon" />
 	
-        <!-- Processing -->
-        <script type="text/javascript" src="processing-1.4.1.min.js"></script>
-
-        <!-- DAT.GUI 8E -->
-		<script type="text/javascript" src="dat.gui.min.js"></script> 
-
-        <!-- Control JS -->
-		<script type="text/javascript" src="guiPixelControl.js"></script>
-
+	    <!-- jQuery -->
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	    
+	    <!-- GUI_PixelSorting.js  -->
+	    <script src="GUI_PixelSorting.js"></script>
+	    
+	    <script type="text/javascript">
+		  var imageUrl = "sort_tokyo.jpg";
+		  var img = new Image();
+		  img.onload = function(){
+			var sortedCanvas = sortPixels(img,0,1);
+			document.body.appendChild(sortedCanvas);
+		  }
+		  img.src = imageUrl;
+	    </script>
+		
+	    <!-- Processing 
+		  <script type="text/javascript" src="processing-1.4.1.min.js"></script>
+	    -->
+	    <!-- DAT.GUI 8E 
+		  <script type="text/javascript" src="dat.gui.min.js"></script> 
+	    -->
+	    <!-- Control JS 
+		  <script type="text/javascript" src="guiPixelControl.js"></script>
+	    -->
 </head>
 
 <body>
-
-      <canvas data-processing-sources="GUI_PixelSorting.pde"></canvas>  
+      
+      <!--
+	    <canvas data-processing-sources="GUI_PixelSorting.pde"></canvas>
+      -->
       <p>
       	Description goes here.
       </p>
