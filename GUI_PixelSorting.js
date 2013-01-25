@@ -29,8 +29,7 @@ var sortPixels = (function(){
     
   var init = function(img, mode, threshold) {
     this.threshold = threshold;
-    //this.threshold = 135;
-    this.mode = mode;// || 1;
+    this.mode = mode;// || 2;
     this.vLoop = 0;    
     this.loopCount = 0;
 
