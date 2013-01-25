@@ -18,8 +18,9 @@
 		  var imageUrl = "sort_tokyo.jpg";
 		  var img = new Image();
 		  img.onload = function(){
-			var sortedCanvas = sortPixels(img,0,1);
-			document.body.appendChild(sortedCanvas);
+			var sortedCanvas = sortPixels(img,2,25);
+			document.body.appendChild(sortedCanvas.canvas);
+			setInterval(sortedCanvas.fxn, 50);
 		  }
 		  img.src = imageUrl;
 	    </script>
