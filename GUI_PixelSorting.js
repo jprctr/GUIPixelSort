@@ -103,6 +103,62 @@ var sortPixels = (function(){
     while (loopCount < numPixels){
         switch(this.mode) {
           case 0:
+            //Color Separation - 
+            if (loopCount > height) {
+              if (getPixelBrightness(loopCount) > threshold) {
+                  imageData = setPixel(imageData, (loopCount- height), getPixel(imageData, loopCount));
+              }
+            }
+            break;
+          case 1:
+            //Color Separation +
+            if (loopCount < numPixels-height) {
+              if (getPixelBrightness(loopCount) > threshold) {
+                  imageData = setPixel(imageData, (loopCount+ height), getPixel(imageData, loopCount));
+              }
+            }
+            break;
+          case 2:
+            //Color Separation Washed Out
+            if (loopCount > threshold) {
+              if (getPixelBrightness(loopCount) > threshold) {
+                  imageData = setPixel(imageData, (loopCount- threshold), getPixel(imageData, loopCount));
+              }
+            }
+            break;
+          case 3:
+            //Green and Purple
+            if (loopCount > 2) {
+              if (getPixelBrightness(loopCount) > threshold) {
+                  imageData = setPixel(imageData, (loopCount- 2), getPixel(imageData, loopCount));
+              }
+            }
+            break;
+          case 4:
+            //snow crash
+            if (loopCount < numPixels-1) {
+              if (getPixelBrightness(loopCount) > threshold) {
+                  imageData = setPixel(imageData, (loopCount++ ), getPixel(imageData, loopCount));
+              }
+            }
+            break;
+          
+          //Some more to be added
+                //snow crash!
+                  //imageData = setPixel(imageData, (loopCount++ ), getPixel(imageData, loopCount));
+                //seizure warning
+                  //imageData = setPixel(imageData, (loopCount-- ), getPixel(imageData, loopCount));
+                //Granular
+                  //imageData = setPixel(imageData, (loopCount/ .8), getPixel(imageData, loopCount));
+                //slide everything left
+                  //imageData = setPixel(imageData, (loopCount- 4), getPixel(imageData, loopCount));
+                //emboss effect
+                  //imageData = setPixel(imageData, (loopCount- 3), getPixel(imageData, loopCount));
+
+
+          
+          /*old Modes
+          case 0:
             if (loopCount > width) { 
               if (getPixelBrightness(loopCount) > threshold) {
                 imageData = setPixel(imageData, loopCount, getPixel(imageData, loopCount - width));
@@ -125,40 +181,15 @@ var sortPixels = (function(){
             if (loopCount > width) { 
 //              var test = getPixelBrightness(loopCount);
               if (getPixelBrightness(loopCount) > threshold) {
-        // Here's a whole bunch of things I tried to mess with the image data
-        // I'm thinking we could replace the existing 'modes' with some of these.
-
-          //Coolest looking
-                //Color Separation +
-                  //imageData = setPixel(imageData, (loopCount+ height), getPixel(imageData, loopCount));
-                //Color Separation -
-                  imageData = setPixel(imageData, (loopCount- height), getPixel(imageData, loopCount));
-                //washed out and color shifted
-                  //imageData = setPixel(imageData, (loopCount- threshold), getPixel(imageData, loopCount));
-
-          //Intersting
-                //snow crash!
-                  //imageData = setPixel(imageData, (loopCount++ ), getPixel(imageData, loopCount));
-                //seizure warning
-                  //imageData = setPixel(imageData, (loopCount-- ), getPixel(imageData, loopCount));
-                //Granular
-                  //imageData = setPixel(imageData, (loopCount/ .8), getPixel(imageData, loopCount));
-
-          //Moving
-                //slide everything left
-                  //imageData = setPixel(imageData, (loopCount- 4), getPixel(imageData, loopCount));
-                //emboss effect
-                  //imageData = setPixel(imageData, (loopCount- 3), getPixel(imageData, loopCount));
-                //Green and Purple
-                  //imageData = setPixel(imageData, (loopCount- 2), getPixel(imageData, loopCount));
-
+              
               //Original working JS 
                   //imageData = setPixel(imageData, (loopCount- width), getPixel(imageData, loopCount));
                 //Processing version
                   //img.pixels[loopCount-img.width] = int(abs(sin(loopCount)*loopCount));
               }
             }
-            break;       
+            break;
+          */  
         }
         loopCount = loopCount + 4;
     }
@@ -180,7 +211,8 @@ var sortPixels = (function(){
     // HSL - lightness:
     //return (Math.max(r,g,b) + Math.min(r,g,b)) / 2
     // HSV - value:
-    return Math.max(r,g,b) / 255 * 100;
+    //return Math.max(r,g,b) / 255 * 100;
+    return Math.max(r,g,b);
   }
   
   return init;
