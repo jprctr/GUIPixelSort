@@ -29,10 +29,12 @@ $(document).ready(function() {
         if (file_obj == undefined || file_obj.filename == undefined) {
           return false;
         }
-        $('#container').html(buildImageBox(file_obj.filename));
+        //$('#canvas1').html(buildImageBox(file_obj.filename));
+        start_the_magic(file_obj.filename);
         
       }
     });
     return false;
   });
 });
+
